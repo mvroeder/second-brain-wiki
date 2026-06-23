@@ -1,0 +1,7 @@
+{
+  "name": "second-brain-wiki",
+  "version": "0.1.0",
+  "description": "AI-maintained Obsidian second-brain engine: ingest URLs and last30days scans, triage an inbox, lint the vault, graduate ideas, and synthesize cross-topic clusters. Two vaults (read-only personal, write-allowed wiki), a set of verbs, and five nightly/weekly automation prompts (inbox-process, weekly-lint, newsletter-triage, transcript-triage, reading-list-triage).",
+  "author": { "name": "second-brain-wiki" },
+  "keywords": ["obsidian", "second-brain", "knowledge-management", "wiki", "automation"]
+}

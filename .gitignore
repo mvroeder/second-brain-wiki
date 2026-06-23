@@ -1,0 +1,3 @@
+.DS_Store
+*.plugin
+# per-user local state lives in ~/Cowork/productivity, never in the repo

@@ -207,16 +207,16 @@ material.
 
 ## 5. Workflows
 
-### 5A. Newsletter -> single URLs -> Apple Reminders -> wiki  (the reading-list flow)
+### 5A. Drop a link in `reading-list.md` -> wiki  (the reading-list flow)
 
-This is the path for "I am reading a newsletter, I see a few links worth keeping, I want them in
-my wiki - but later, not now." You stash URLs in Apple Reminders during the day; the wiki picks
-them up the next morning.
+This is the path for "I am reading something, I see a few links worth keeping, I want them in
+my wiki - but later, not now." You add URLs to a plain file during the day, on desktop or from
+your phone via Obsidian Mobile; the wiki picks them up the next morning.
 
 **The setup it assumes.** `reading-list-triage` reads a plain-text file at
-`{{VAULT_BASE}}/{{WIKI_VAULT}}/reading-list.md` that mirrors an Apple Reminders list. You need a one-time sync
-from Apple Reminders to that file (an Apple Shortcut, a small export script, or a reminders sync
-tool - the plugin does not ship one). The file must contain a section like:
+`{{VAULT_BASE}}/{{WIKI_VAULT}}/reading-list.md`. This file is yours: you create it, you add
+lines to it, and the agent never edits or prunes it - it only reads it. The file must contain a
+section like:
 
 ```
 ## Reading List
@@ -224,30 +224,33 @@ tool - the plugin does not ship one). The file must contain a section like:
 - https://blog.example.org/post
 ```
 
-The job captures two kinds of entries from the **Reading List** section only: any item tagged
-`#i-read`, and any item whose title starts with `http://` or `https://`. Everything else is
-ignored.
+The job captures two kinds of entries from the **Reading List** section only: any line tagged
+`#i-read`, and any line whose text starts with `http://` or `https://`. Everything else is
+ignored. Apple Reminders is one optional way to fill this file (via a Reminders -> file sync you
+set up yourself - an Apple Shortcut, a small export script, or a reminders sync tool; the plugin
+does not ship one) but it is an adapter, not a requirement - editing the file directly is the
+primary path.
 
 **The daily loop.**
 
-1. **During the day**: reading a newsletter (in Gmail, Apple Mail, wherever), you spot a link
-   worth keeping. Add it to your Apple Reminders "Reading List" - paste the URL as the reminder
-   title, or add a normal reminder and tag it `#i-read`.
-2. **Overnight**: your Reminders -> `TASKS.md` sync runs, so the new URLs appear in the
-   `## Reading List` section.
-3. **Early morning**: `reading-list-triage` runs. For each new URL it fetches the page, writes a
-   title + TL;DR, and proposes a category: WIKI (fits your focus lenses, a new concept), READ
-   (too nuanced to auto-handle), or SKIP. It records each in `reading-list-ledger.jsonl` so it
-   never re-rates the same URL.
-4. **You get a chat summary** like: "3 new URLs. 1. <title> - WIKI; 2. <title> - SKIP; 3.
+1. **During the day**: reading something (a newsletter, an article, wherever), you spot a link
+   worth keeping. Open `reading-list.md` - on your Mac, or on your phone via Obsidian Mobile -
+   and add a line under `## Reading List`: paste the URL, or add a line of text and tag it
+   `#i-read`. (Optional: if you run an Apple Reminders -> file sync, adding to a Reminders list
+   works too, since it writes into the same file.)
+2. **Early morning**: `reading-list-triage` reads the file. For each new URL it fetches the page,
+   writes a title + TL;DR, and proposes a category: WIKI (fits your focus lenses, a new concept),
+   READ (too nuanced to auto-handle), or SKIP. It records each in `reading-list-ledger.jsonl` so
+   it never re-rates the same URL, and never writes back to `reading-list.md` itself.
+3. **You get a chat summary** like: "3 new URLs. 1. <title> - WIKI; 2. <title> - SKIP; 3.
    <title> - READ. Reply with numbers and destinations, e.g. 'ingest 3 wiki, 5 skip'."
-5. **You confirm**: reply "ingest 1 wiki". The agent then runs `/ingest-url` on that link: it
+4. **You confirm**: reply "ingest 1 wiki". The agent then runs `/ingest-url` on that link: it
    writes a full `Sources/` note, synthesizes the concepts into `Topics/`, cross-links related
    pages, and updates `Index.md`. The ledger entry flips to its final verdict.
-6. Done. The article is now durable, sourced, and linked in your wiki - and you never lost the
+5. Done. The article is now durable, sourced, and linked in your wiki - and you never lost the
    link or had to process it in the moment.
 
-If you do not want the Reminders dependency, skip this job entirely and use 5B instead.
+If you do not want this job, skip it entirely and use 5B instead.
 
 ### 5B. Capture a single URL right now
 
@@ -351,7 +354,7 @@ Skills whose connectors are missing simply do not run until connected.
 | I want to... | Do this |
 |---|---|
 | Save a link now | `ingest-url <url>` |
-| Save links during the day for later | Add to Apple Reminders "Reading List" (tag `#i-read`) -> `reading-list-triage` handles it next morning |
+| Save links during the day for later | Add a line to `reading-list.md` (tag `#i-read`), on desktop or via Obsidian Mobile -> `reading-list-triage` handles it next morning |
 | Triage my newsletters | `newsletter-triage` (daily) -> confirm -> `wiki-inbox-process` |
 | Turn a research scan into wiki pages | `ingest-scan <topic>` |
 | File voice notes / meetings | `transcript-triage` (daily) |

@@ -1,6 +1,6 @@
 # routing-rules.md - binding routing reference for transcript-triage
 
-> Copy this to `~/Cowork/productivity/routing-rules.md` and adapt. This file is the
+> Copy this to `{{STATE_DIR}}/routing-rules.md` and adapt. This file is the
 > binding source of truth; the table inside the transcript-triage prompt is only a working copy.
 
 ## Discretion principle

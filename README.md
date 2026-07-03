@@ -22,7 +22,7 @@ the wiki fed and linted.
 
 **Templates** (`templates/`)
 - `wiki-vault-CLAUDE.md` - the full schema that lives at your wiki vault root (the rulebook the verbs read)
-- `obsidian-root-CLAUDE.md` - optional root context loader for `~/Obsidian/`
+- `obsidian-root-CLAUDE.md` - optional root context loader for `{{VAULT_BASE}}/`
 - `routing-rules.md` - binding routing reference for transcript-triage
 
 ## First run
@@ -62,7 +62,7 @@ end-to-end workflows - including how to pull single URLs out of newsletters via 
 
 ### Two vaults, one rule
 
-You keep two Obsidian vaults side by side under `~/Obsidian/`:
+You keep two Obsidian vaults side by side under `{{VAULT_BASE}}/`:
 
 - **Personal vault** (your name for it, e.g. `Personal`) - your own notes, briefings, daily
   logs, knowledge articles. The wiki agent treats this as **read-only**. It reads it for
@@ -128,18 +128,18 @@ every skill at runtime, so this one file retargets the whole plugin:
 Optionally fill the focus lenses block.
 
 ### Step 2 - Scaffold the wiki vault
-In `~/Obsidian/<WIKI_VAULT>/` create: `inbox/`, `inbox/_archive/`, `Sources/`, `Topics/`,
+In `{{VAULT_BASE}}/<WIKI_VAULT>/` create: `inbox/`, `inbox/_archive/`, `Sources/`, `Topics/`,
 `People/`, `Projects/`, `Maps/`, `_audit/`, plus a starter `Index.md` and `hot.md`.
 `wiki-setup` does this for you.
 
 ### Step 3 - Install the schema
-Copy `templates/wiki-vault-CLAUDE.md` to `~/Obsidian/<WIKI_VAULT>/CLAUDE.md`, substituting your
+Copy `templates/wiki-vault-CLAUDE.md` to `{{VAULT_BASE}}/<WIKI_VAULT>/CLAUDE.md`, substituting your
 token values. This is the rulebook every verb reads at the start of a run. Without it at the
 vault root, the skills have no schema. Optionally copy `templates/obsidian-root-CLAUDE.md` to
-`~/Obsidian/CLAUDE.md` so any session that mounts the folder gets the read pattern.
+`{{VAULT_BASE}}/CLAUDE.md` so any session that mounts the folder gets the read pattern.
 
 ### Step 4 - Local state for the triage jobs
-Create `~/Cowork/productivity/` and copy `templates/routing-rules.md` there. The dedup ledgers
+Create `{{STATE_DIR}}/` and copy `templates/routing-rules.md` there. The dedup ledgers
 (`ingest-ledger.jsonl`, `newsletter-ledger.jsonl`, `reading-list-ledger.jsonl`) are created on
 first run.
 
@@ -180,7 +180,7 @@ Every inbox file gets exactly one decision:
 ## 4. The automation jobs (scheduled prompts)
 
 These run on a schedule and are **propose-only**: they never file anything without your
-confirmation. They dedup via the JSONL ledgers in `~/Cowork/productivity/`.
+confirmation. They dedup via the JSONL ledgers in `{{STATE_DIR}}/`.
 
 | Job | Cadence | Needs | What it does |
 |---|---|---|---|
@@ -209,7 +209,7 @@ my wiki - but later, not now." You stash URLs in Apple Reminders during the day;
 them up the next morning.
 
 **The setup it assumes.** `reading-list-triage` reads a plain-text file at
-`~/Cowork/productivity/TASKS.md` that mirrors an Apple Reminders list. You need a one-time sync
+`{{VAULT_BASE}}/{{WIKI_VAULT}}/reading-list.md` that mirrors an Apple Reminders list. You need a one-time sync
 from Apple Reminders to that file (an Apple Shortcut, a small export script, or a reminders sync
 tool - the plugin does not ship one). The file must contain a section like:
 
@@ -304,12 +304,12 @@ Skills whose connectors are missing simply do not run until connected.
 
 | Path | What it is |
 |---|---|
-| `~/Obsidian/<WIKI_VAULT>/` | the wiki vault (write target) |
-| `~/Obsidian/<WIKI_VAULT>/CLAUDE.md` | the schema the verbs read first |
-| `~/Obsidian/<PERSONAL_VAULT>/` | your personal vault (read-only to the wiki agent) |
-| `~/Cowork/productivity/TASKS.md` | reading-list source (mirror of Apple Reminders) |
-| `~/Cowork/productivity/routing-rules.md` | binding routing reference for transcript-triage |
-| `~/Cowork/productivity/*.jsonl` | dedup ledgers (newsletter, reading-list, ingest) |
+| `{{VAULT_BASE}}/<WIKI_VAULT>/` | the wiki vault (write target) |
+| `{{VAULT_BASE}}/<WIKI_VAULT>/CLAUDE.md` | the schema the verbs read first |
+| `{{VAULT_BASE}}/<PERSONAL_VAULT>/` | your personal vault (read-only to the wiki agent) |
+| `{{VAULT_BASE}}/{{WIKI_VAULT}}/reading-list.md` | reading-list source (mirror of Apple Reminders) |
+| `{{STATE_DIR}}/routing-rules.md` | binding routing reference for transcript-triage |
+| `{{STATE_DIR}}/*.jsonl` | dedup ledgers (newsletter, reading-list, ingest) |
 
 ---
 
@@ -331,7 +331,7 @@ Skills whose connectors are missing simply do not run until connected.
 
 - **A job did nothing.** Its connector is probably not authorized, or there was nothing new
   (the ledgers prevent re-processing). Check the connector and the relevant ledger.
-- **`reading-list-triage` never finds anything.** Confirm `~/Cowork/productivity/TASKS.md`
+- **`reading-list-triage` never finds anything.** Confirm `{{VAULT_BASE}}/{{WIKI_VAULT}}/reading-list.md`
   exists and has a `## Reading List` section that your Reminders sync actually writes to.
 - **Tokens like `{{WIKI_VAULT}}` show up in your vault files.** The schema was copied without
   substitution. Re-run `wiki-setup` or re-copy `templates/wiki-vault-CLAUDE.md` with your real

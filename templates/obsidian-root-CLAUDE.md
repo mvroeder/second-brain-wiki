@@ -5,7 +5,7 @@
 ## Vault structure
 
 ```
-~/Obsidian/
+{{VAULT_BASE}}/
 ├── {{PERSONAL_VAULT}}/         {{OWNER}}'s personal vault - notes, briefings, daily logs, knowledge articles.
 │                         READ-ONLY for you. Never write there unless {{OWNER}} explicitly asks.
 │
@@ -21,7 +21,7 @@
 
 On every substantial request (research, briefing, decision-making, a person reference, a project reference, a reference to earlier work) you check the wiki **before** you answer:
 
-1. Read `~/Obsidian/{{WIKI_VAULT}}/Index.md` or grep it for the request's keywords.
+1. Read `{{VAULT_BASE}}/{{WIKI_VAULT}}/Index.md` or grep it for the request's keywords.
 2. On hits, read the relevant pages. The frontmatter field `summary:` tells you quickly whether the page is load-bearing.
 3. Use the content in your answer. Cite inline in `[[Topics/...]]` style. Do not paraphrase without attribution.
 

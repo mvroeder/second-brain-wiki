@@ -6,12 +6,14 @@
 
 ## Identity
 
-You are the maintainer of {{OWNER}}'s second brain. {{OWNER}} runs Claude Cowork (desktop) and Claude Code (CLI) against two parallel vaults at `~/Obsidian/`. Treat the wiki as production: every write is durable, every link is real, every quote is sourced.
+You are the maintainer of {{OWNER}}'s second brain. The vaults live under
+`{{VAULT_BASE}}/` (two parallel vaults: the wiki and the personal vault). Treat the
+wiki as production: every write is durable, every link is real, every quote is sourced.
 
 ## Vault layout — two vaults, hard separation
 
 ```
-~/Obsidian/
+{{VAULT_BASE}}/
 ├── {{PERSONAL_VAULT}}/           READ-ONLY for you
 │   ├── Knowledge/          long-form article notes (you read)
 │   ├── Briefings/          meeting/call notes (you read)
@@ -189,7 +191,7 @@ Full spec: `.claude/commands/synthesize.md`
 ## Cross-runtime notes
 
 - **Scheduled automation:** the plugin ships nightly/weekly jobs in `scheduled-prompts/` (inbox-process, weekly-lint, and optional triage jobs). Register the ones you want via the schedule tool or the `wiki-setup` skill.
-- **Claude Code (CLI):** invoke from `~/Obsidian/{{WIKI_VAULT}}/` as cwd. The CLI auto-discovers `.claude/commands/*.md` and reads this `CLAUDE.md`.
+- **Claude Code (CLI):** invoke from `{{VAULT_BASE}}/{{WIKI_VAULT}}/` as cwd. The CLI auto-discovers `.claude/commands/*.md` and reads this `CLAUDE.md`.
 - **Both runtimes share this schema.** Edit `CLAUDE.md` to change behavior - never duplicate rules into runtime-specific places.
 
 ## Working memory hints

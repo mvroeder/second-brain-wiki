@@ -8,6 +8,8 @@ Replace the values on the right. The skills read this file before acting.
 | `{{OWNER}}` | Your name (used in agent identity + voice calibration) | _Your name_ |
 | `{{OWNER_EMAIL}}` | Your email (used by the Gmail/triage jobs) | _you@example.com_ |
 | `{{WIKI_VAULT}}` | Name of your WRITE-allowed Obsidian vault | _Wiki_ |
+| `{{VAULT_BASE}}` | The directory that holds your vaults. On Windows set an absolute path, e.g. `C:\Users\<name>\Obsidian`. | `~/Obsidian` |
+| `{{STATE_DIR}}` | Where the plugin keeps its operational state (dedup ledgers, routing-rules). Default places it inside the wiki vault so it needs no separate folder grant and is cross-platform. | `{{VAULT_BASE}}/{{WIKI_VAULT}}/.wiki-state` |
 | `{{PERSONAL_VAULT}}` | Name of your READ-ONLY personal vault | _Personal_ |
 | `{{PERSONAL_VAULT_ENC}}` | URL-encoded form of the personal vault name (spaces -> %20), for markdown links | _Personal_ |
 
@@ -23,11 +25,7 @@ are free-form. If you leave this empty, those jobs simply rate by general releva
 
 ## Local state (per-user, created on first run)
 
-- `~/Cowork/productivity/` holds the dedup ledgers and `routing-rules.md`:
-  - `ingest-ledger.jsonl`        (transcript-triage)
-  - `newsletter-ledger.jsonl`    (newsletter-triage)
-  - `reading-list-ledger.jsonl`  (reading-list-triage)
-  - `routing-rules.md`           (binding routing reference for transcript-triage;
-                                  a starter copy ships in templates/routing-rules.md)
-  - `TASKS.md`                   (OPTIONAL - your reminders sync file, source for reading-list-triage;
-                                  only if you run a Reminders -> TASKS.md sync)
+- `{{STATE_DIR}}/` holds the dedup ledgers (`*-ledger.jsonl`) and `routing-rules.md`.
+  It lives inside the wiki vault, so it needs no separate folder grant and is
+  cross-platform. `reading-list.md` (the capture file) sits at the wiki vault root,
+  visible so you can edit it from Obsidian Mobile.

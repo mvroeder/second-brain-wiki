@@ -26,9 +26,10 @@ without it at the vault root the skills have no schema. Optionally copy
 ## 4. Local state for the triage jobs
 Create `{{STATE_DIR}}/` and copy `templates/routing-rules.md` there (token-substituted).
 The JSONL ledgers (`ingest-ledger`, `newsletter-ledger`, `reading-list-ledger`) are created on
-first run. `reading-list-triage` is **optional** - it reads a `reading-list.md` reminders-sync file at
-`{{VAULT_BASE}}/{{WIKI_VAULT}}/reading-list.md`. If you do not run a Reminders -> reading-list.md sync, skip this job; `reading-list-ledger`
-and `reading-list.md` are then not needed.
+first run. `reading-list-triage` is **optional** - it reads `reading-list.md` at the wiki vault
+root (`{{VAULT_BASE}}/{{WIKI_VAULT}}/reading-list.md`), which you edit by hand or from Obsidian
+Mobile; an Apple Reminders sync is one optional way to fill it. If you will not keep a reading
+list at all, skip this job.
 
 ## 5. Connect the tools
 Authorize the connectors you want: Gmail (`newsletter-triage`), Plaud + Monologue

@@ -315,7 +315,7 @@ Skills whose connectors are missing simply do not run until connected.
 | `{{VAULT_BASE}}/<WIKI_VAULT>/` | the wiki vault (write target) |
 | `{{VAULT_BASE}}/<WIKI_VAULT>/CLAUDE.md` | the schema the verbs read first |
 | `{{VAULT_BASE}}/<PERSONAL_VAULT>/` | your personal vault (read-only to the wiki agent) |
-| `{{VAULT_BASE}}/{{WIKI_VAULT}}/reading-list.md` | reading-list source (mirror of Apple Reminders) |
+| `{{VAULT_BASE}}/{{WIKI_VAULT}}/reading-list.md` | reading-list source (human-append-only; Apple Reminders sync optional) |
 | `{{STATE_DIR}}/routing-rules.md` | binding routing reference for transcript-triage |
 | `{{STATE_DIR}}/*.jsonl` | dedup ledgers (newsletter, reading-list, ingest) |
 

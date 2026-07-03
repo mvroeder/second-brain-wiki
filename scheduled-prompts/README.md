@@ -14,7 +14,7 @@ cron expression and a `name`/`description`.
 | `wiki-weekly-lint` | Saturday 11:00 | Obsidian vault | Health check: broken links, orphans, stale pages, contradictions -> `_audit/`. |
 
 All three triage jobs are propose-only: they never file anything without your confirmation.
-They dedup via JSONL ledgers in `~/Cowork/productivity/`. The chain is:
+They dedup via JSONL ledgers in `{{STATE_DIR}}` (the wiki vault is already the granted folder; the state dir is `{{STATE_DIR}}` inside it). The chain is:
 newsletter/reading-list/transcript propose -> you confirm -> a capture lands in `inbox/`
 -> `wiki-inbox-process` is the only thing that writes durably into the wiki.
 

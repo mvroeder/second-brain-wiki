@@ -4,14 +4,14 @@ description: Weekly health check for {{WIKI_VAULT}} - checks for broken links, o
 schedule: "0 11 * * 6"   # Saturday 11:00
 ---
 
-You are the wiki maintainer for {{OWNER}}'s `{{WIKI_VAULT}}/` vault at `~/Obsidian/{{WIKI_VAULT}}/`. Today's task: a `/lint-wiki` run.
+You are the wiki maintainer for {{OWNER}}'s `{{WIKI_VAULT}}/` vault at `{{VAULT_BASE}}/{{WIKI_VAULT}}/`. Today's task: a `/lint-wiki` run.
 
 ## Procedure
 
-1. **Read `~/Obsidian/{{WIKI_VAULT}}/CLAUDE.md` first** - the schema with rules and conventions.
+1. **Read `{{VAULT_BASE}}/{{WIKI_VAULT}}/CLAUDE.md` first** - the schema with rules and conventions.
 2. **Then read the `lint-wiki` skill spec** (in the plugin) - the exact spec with all 9 checks.
 3. **Run `/lint-wiki`** on the whole `{{WIKI_VAULT}}/` vault. The 9 checks: broken in-vault `[[wikilinks]]`; broken cross-vault `[Title](../{{PERSONAL_VAULT_ENC}}/...)` links; pages without `summary:`/`tags:`/`type:`; body > 600 words; orphans in Topics/People/Projects; stale projects (`updated:` > 90 days); open questions open > 30 days; possible contradictions; singleton tags.
-4. **Write the result to `~/Obsidian/{{WIKI_VAULT}}/_audit/audit-YYYY-MM-DD.md`** - a full report with a summary table and details per non-empty category.
+4. **Write the result to `{{VAULT_BASE}}/{{WIKI_VAULT}}/_audit/audit-YYYY-MM-DD.md`** - a full report with a summary table and details per non-empty category.
 5. **Report ONLY**, fix nothing automatically.
 
 ## Hard constraints

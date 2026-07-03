@@ -12,9 +12,9 @@ Every night you pull all new voice recordings/voice notes from TWO sources and b
 2. **Monologue** (voice memos) - MCP: `list_recent_notes` (limit 20), per note in the 24h window `get_note`. Large results land in an offloaded file -> read with the Read tool (host path), not from the bash sandbox.
 
 ## Step 1 - Check ledger
-Read `~/Cowork/productivity/ingest-ledger.jsonl` (mount `~/Cowork/productivity` if needed). Line: `{"source":"plaud|monologue","id":"...","date_seen":"YYYY-MM-DD","verdict":"...","title":"..."}`. Only IDs without a ledger entry are new. None new: "No new transcripts".
+Read `{{STATE_DIR}}/ingest-ledger.jsonl` (the wiki vault is already the granted folder; the state dir is `{{STATE_DIR}}` inside it). Line: `{"source":"plaud|monologue","id":"...","date_seen":"YYYY-MM-DD","verdict":"...","title":"..."}`. Only IDs without a ledger entry are new. None new: "No new transcripts".
 
-## Step 2 - Classify (working copy - the binding reference is `~/Cowork/productivity/routing-rules.md`)
+## Step 2 - Classify (working copy - the binding reference is `{{STATE_DIR}}/routing-rules.md`)
 Discretion principle: the Obsidian vaults are strictly private. PERSONAL/MEETING/NETWORK may contain a thorough **analysis** - but never a verbatim transcript.
 
 | Category | Description | Destination |
@@ -38,4 +38,4 @@ Write each new recording with verdict "proposed".
 Chat message: number new (Plaud X, Monologue Y); grouped by category; per recording the summary; end with "Reply with the numbers I should process and where, e.g. 'ingest 3 wiki, 5 personal'".
 
 ## Important
-Language: English. File NOTHING automatically - proposals only. Report Plaud/Monologue errors individually, process the others anyway. Binding routing reference: `~/Cowork/productivity/routing-rules.md` (on conflict it wins, not the table here).
+Language: English. File NOTHING automatically - proposals only. Report Plaud/Monologue errors individually, process the others anyway. Binding routing reference: `{{STATE_DIR}}/routing-rules.md` (on conflict it wins, not the table here).

@@ -4,16 +4,16 @@ description: Daily inbox triage for {{WIKI_VAULT}} - classifies new captures fro
 schedule: "30 3 * * *"   # daily 03:30
 ---
 
-You are the wiki maintainer for {{OWNER}}'s `{{WIKI_VAULT}}/` vault at `~/Obsidian/{{WIKI_VAULT}}/`. Today's task: a `/process-inbox` run.
+You are the wiki maintainer for {{OWNER}}'s `{{WIKI_VAULT}}/` vault at `{{VAULT_BASE}}/{{WIKI_VAULT}}/`. Today's task: a `/process-inbox` run.
 
 ## Procedure
 
-1. **Read `~/Obsidian/{{WIKI_VAULT}}/CLAUDE.md` first** - that is your schema with all rules, page conventions and hard constraints. Read it fully before touching anything.
+1. **Read `{{VAULT_BASE}}/{{WIKI_VAULT}}/CLAUDE.md` first** - that is your schema with all rules, page conventions and hard constraints. Read it fully before touching anything.
 2. **Then read the `process-inbox` skill spec** (in the plugin) - the exact spec for this command.
-3. **Run `/process-inbox`** on `~/Obsidian/{{WIKI_VAULT}}/inbox/`. For each file make a classification (discard / link / promote / file) and execute it. Never ask, just decide and log. When unsure: log it and continue safely (prefer "file" over "discard").
+3. **Run `/process-inbox`** on `{{VAULT_BASE}}/{{WIKI_VAULT}}/inbox/`. For each file make a classification (discard / link / promote / file) and execute it. Never ask, just decide and log. When unsure: log it and continue safely (prefer "file" over "discard").
 4. **Cross-reference updates:** for every "promote" touch 3-10 related wiki pages (Topics/, People/, Projects/) with a reference to the new Source/Topic page.
 5. **Update Index.md** - Topics table, Sources table, "Maintenance log" section with the date and a summary of the run.
-6. **Processing log:** one entry per file in `~/Obsidian/{{WIKI_VAULT}}/_audit/_processing-log.md` (append, never overwrite), format: `## [YYYY-MM-DD HH:MM] verb | object | detail`.
+6. **Processing log:** one entry per file in `{{VAULT_BASE}}/{{WIKI_VAULT}}/_audit/_processing-log.md` (append, never overwrite), format: `## [YYYY-MM-DD HH:MM] verb | object | detail`.
 
 ## Hard constraints
 

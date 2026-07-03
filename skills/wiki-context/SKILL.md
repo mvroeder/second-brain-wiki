@@ -12,7 +12,7 @@ You do a **read-only** lookup in `{{WIKI_VAULT}}/`. You write nothing. You inven
 
 ## Procedure
 
-1. **Read `~/Obsidian/{{WIKI_VAULT}}/Index.md`** - that is the map. It has one line per page with a summary.
+1. **Read `{{VAULT_BASE}}/{{WIKI_VAULT}}/Index.md`** - that is the map. It has one line per page with a summary.
 2. **Search for query keywords** in this order:
    - Full-text match in `Index.md`
    - Grep on title + frontmatter `tags:` + `summary:` in `Topics/`, `People/`, `Projects/`, `Sources/`

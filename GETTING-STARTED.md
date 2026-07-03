@@ -56,7 +56,7 @@ configuration) calls `{{VAULT_BASE}}`. On macOS that is commonly a folder like
 
 You need:
 
-- A **Claude Pro or Max account** (Cowork is part of these plans).
+- A **Claude account with Cowork access**.
 - **Cowork**, Claude's desktop environment that can read and write files and run
   automated jobs on a schedule.
 
@@ -64,8 +64,7 @@ Everything else, the vaults, the plugin, the wiki itself, gets set up in the ste
 
 ### Step-by-step: macOS
 
-1. **Install Cowork.** Download it from claude.ai and sign in with your Claude Pro/Max
-   account.
+1. **Install Cowork.** Download it from claude.ai and sign in with your Claude account.
 2. **Install Obsidian.** Download the macOS app and install it like any other
    application. You do not need to create an account to use it locally.
 3. **Create your two vaults.** Open Obsidian. On the welcome screen choose "Create new
@@ -99,8 +98,7 @@ Everything else, the vaults, the plugin, the wiki itself, gets set up in the ste
 
 The steps are the same as macOS, with one important difference around folder access.
 
-1. **Install Cowork.** Download it from claude.ai and sign in with your Claude Pro/Max
-   account.
+1. **Install Cowork.** Download it from claude.ai and sign in with your Claude account.
 2. **Install Obsidian.** Download the Windows app and install it.
 3. **Create your two vaults, inside your user folder.** Open Obsidian and choose "Create
    new vault" twice, once for the wiki vault and once for the personal vault. Save both
@@ -189,8 +187,7 @@ If either of these sounds like more risk than you want, use Obsidian Sync instea
      on your desktop, and choose your wiki vault from the list of synced vaults offered.
    - **With iCloud:** choose "Open folder as vault," then browse to the vault folder
      inside your iCloud Drive (on iOS this appears under "iCloud Drive" in the file
-     picker; on Android you will need an iCloud-for-Windows-style bridge or you should
-     use Obsidian Sync instead, since iCloud Drive is not natively available on Android).
+     picker; on Android, iCloud Drive is not available, so use Obsidian Sync instead).
 4. **Open `reading-list.md`.** Once the vault is open on your phone, use the file browser
    inside the app (usually a folder icon in a corner) to find `reading-list.md` at the
    root of your wiki vault.
@@ -244,6 +241,20 @@ Once setup is done, here is a concrete first run to get a feel for the whole loo
    just adds a reference), promote it (a genuinely new idea gets its own page), or file
    it (worth keeping, not ripe yet). This is the main way raw material becomes durable
    knowledge.
+
+### The three automation tiers
+
+During setup, `wiki-setup` offers to turn on scheduled jobs in three tiers. Pick what you
+want; you can change this later.
+
+- **Core (Obsidian only, recommended):** `wiki-inbox-process` empties your inbox into the
+  wiki each day, and `wiki-weekly-lint` runs a weekly health check on the wiki. These need
+  nothing but your vault.
+- **Neutral-optional (needs Gmail):** `newsletter-triage` scans your newsletters each
+  morning and offers to pull the worthwhile links into the wiki.
+- **Mac-optional (Apple apps, macOS only):** `transcript-triage` files voice recordings,
+  and `reading-list-triage` processes your `reading-list.md` (and, if you set one up, an
+  Apple Reminders list). Skip this tier on Windows.
 
 ### What to ignore at first
 

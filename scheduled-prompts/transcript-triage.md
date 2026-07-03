@@ -12,7 +12,7 @@ Every night you pull all new voice recordings/voice notes from TWO sources and b
 2. **Monologue** (voice memos) - MCP: `list_recent_notes` (limit 20), per note in the 24h window `get_note`. Large results land in an offloaded file -> read with the Read tool (host path), not from the bash sandbox.
 
 ## Step 1 - Check ledger
-Read `{{STATE_DIR}}/ingest-ledger.jsonl` (the wiki vault is already the granted folder; the state dir is `{{STATE_DIR}}` inside it). Line: `{"source":"plaud|monologue","id":"...","date_seen":"YYYY-MM-DD","verdict":"...","title":"..."}`. Only IDs without a ledger entry are new. None new: "No new transcripts".
+Read `{{STATE_DIR}}/ingest-ledger.jsonl` (inside the wiki vault, which is already granted). Line: `{"source":"plaud|monologue","id":"...","date_seen":"YYYY-MM-DD","verdict":"...","title":"..."}`. Only IDs without a ledger entry are new. None new: "No new transcripts".
 
 ## Step 2 - Classify (working copy - the binding reference is `{{STATE_DIR}}/routing-rules.md`)
 Discretion principle: the Obsidian vaults are strictly private. PERSONAL/MEETING/NETWORK may contain a thorough **analysis** - but never a verbatim transcript.

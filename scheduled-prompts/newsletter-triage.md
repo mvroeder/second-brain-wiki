@@ -14,7 +14,7 @@ Every morning you scan the Gmail inbox for newsletters from the last 24 hours an
 Search mail from the last 24h via the Gmail connector (`newer_than:1d label:inbox`). Filter for newsletter patterns (Substack, Beehiiv, Mailchimp, known senders). Adapt the sender list to your own subscriptions.
 
 ## Step 2 - Check ledger (dedup)
-Read `{{STATE_DIR}}/newsletter-ledger.jsonl` (the wiki vault is already the granted folder; the state dir is `{{STATE_DIR}}` inside it; if the file does not exist, all finds are new). Each line: `{"source":"newsletter","id":"<gmail-message-id>","date_seen":"YYYY-MM-DD","verdict":"proposed|ingested|skip","subject":"...","sender":"..."}`. Only mail with an unknown ID is new. None new: short "quiet morning" note.
+Read `{{STATE_DIR}}/newsletter-ledger.jsonl` (inside the wiki vault, which is already granted; if the file does not exist, all finds are new). Each line: `{"source":"newsletter","id":"<gmail-message-id>","date_seen":"YYYY-MM-DD","verdict":"proposed|ingested|skip","subject":"...","sender":"..."}`. Only mail with an unknown ID is new. None new: short "quiet morning" note.
 
 ## Step 3 - Rate
 Rate each NEW newsletter against your focus lenses (defined in `config.md` or the wiki schema). If none are defined, rate by general relevance to the wiki.

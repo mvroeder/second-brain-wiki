@@ -18,7 +18,7 @@ Ingest the URL: `$ARGUMENTS`
 Use WebFetch to retrieve the URL. If the page is JS-rendered (empty body, "enable JavaScript", or boilerplate-only), escalate to the Chrome MCP per the harness rules.
 
 ### Step 2 - Source note
-Create `Sources/YYYY-MM-DD <Article Title>.md` (today's date, sentence-case title from the article). Match the template {{OWNER}} uses in `../{{PERSONAL_VAULT}}/Knowledge/` — read 2-3 recent files there to calibrate style exactly.
+Create `Sources/YYYY-MM-DD <Article Title>.md` (today's date, sentence-case title from the article). Match the template {{OWNER}} uses in `../{{PERSONAL_VAULT}}/Knowledge/` - read 2-3 recent files there to calibrate style exactly.
 
 Required frontmatter:
 
@@ -64,4 +64,4 @@ End with a one-paragraph diff: which files were created, which were updated, and
 - Every `[[link]]` must point at a real file in this vault (existence-check before emitting).
 - Cross-vault references use `[Title](../{{PERSONAL_VAULT_ENC}}/Knowledge/...)` style markdown links.
 - No em-dashes. Use ` - `.
-- Match {{OWNER}}'s voice — calibrate by reading existing Knowledge/ notes first.
+- Match {{OWNER}}'s voice - calibrate by reading existing Knowledge/ notes first.

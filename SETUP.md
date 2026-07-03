@@ -32,7 +32,8 @@ and `reading-list.md` are then not needed.
 
 ## 5. Connect the tools
 Authorize the connectors you want: Gmail (`newsletter-triage`), Plaud + Monologue
-(`transcript-triage`), and (optional) a Reminders -> TASKS.md sync for `reading-list-triage`.
+(`transcript-triage`), and (optional, for `reading-list-triage`) a `reading-list.md` file -
+an Apple Reminders sync is one optional way to keep it filled.
 Skills whose connectors are missing simply won't run until connected.
 
 ## 6. Register automation (optional)
@@ -46,5 +47,6 @@ token-substituted body. `wiki-setup` can do this for you. See `scheduled-prompts
   meeting/networking/personal/brainstorm analyses into `{{PERSONAL_VAULT}}/Meetings`,
   `/Meetings/1-1`, `/Personal` and `/Ideas`. That is the one automation that files into the
   personal vault - see `scheduled-prompts/README.md` and `templates/routing-rules.md`.
-- `reading-list-triage` depends on a Reminders -> TASKS.md sync. If you have none, leave the
-  job unregistered; everything else works without it.
+- `reading-list-triage` depends on `reading-list.md` at the wiki vault root. An Apple Reminders
+  sync is one optional way to fill it; if you have neither, leave the job unregistered -
+  everything else works without it.

@@ -1,7 +1,7 @@
-# CLAUDE.md — Schema for {{WIKI_VAULT}} vault
+# CLAUDE.md - Schema for {{WIKI_VAULT}} vault
 
-> This file is the schema. You read it on every session and follow it. The user does not edit the wiki by hand — you do.
-> Reference: Karpathy's "LLM Wiki" pattern (gist 442a6bf555914893e9891c11519de94f) — three layers, three verbs.
+> This file is the schema. You read it on every session and follow it. The user does not edit the wiki by hand - you do.
+> Reference: Karpathy's "LLM Wiki" pattern (gist 442a6bf555914893e9891c11519de94f) - three layers, three verbs.
 > Layout: this is a SEPARATE Obsidian vault from `{{PERSONAL_VAULT}}/`. You read across vaults; you write only here.
 
 ## Identity
@@ -10,7 +10,7 @@ You are the maintainer of {{OWNER}}'s second brain. The vaults live under
 `{{VAULT_BASE}}/` (two parallel vaults: the wiki and the personal vault). Treat the
 wiki as production: every write is durable, every link is real, every quote is sourced.
 
-## Vault layout — two vaults, hard separation
+## Vault layout - two vaults, hard separation
 
 ```
 {{VAULT_BASE}}/
@@ -48,7 +48,7 @@ wiki as production: every write is durable, every link is real, every quote is s
 
 **Session-state handovers: hot.md only.** The live "where are we right now" handover is `hot.md` and nothing else. Never create ad-hoc session-handover files inside the wiki, not in `inbox/`, not in `Sources/`. Two lookalikes are *not* banned: (a) a project-local "read me first" note a session leaves beside a self-contained work package *outside* this vault (e.g. under `../{{PERSONAL_VAULT}}/`); (b) a capture whose title merely contains "Handover" but whose content is knowledge transfer (a vocabulary or domain primer), that is ordinary inbox material, classified on content. If a real session-state handover still lands in `inbox/`, `/process-inbox` absorbs it (see that verb); it never survives as a standalone page.
 
-## Hard rules — non-negotiable
+## Hard rules - non-negotiable
 
 1. **Never write outside `{{WIKI_VAULT}}/`.** If you find yourself wanting to
    update a file in `../{{PERSONAL_VAULT}}/`, suggest it to {{OWNER}} in your response

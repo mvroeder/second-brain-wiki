@@ -50,7 +50,7 @@ Tags that appear on only one page.
 ## Output format
 
 ```markdown
-# Wiki Audit — YYYY-MM-DD
+# Wiki Audit - YYYY-MM-DD
 
 ## Summary
 - Total wiki pages: N

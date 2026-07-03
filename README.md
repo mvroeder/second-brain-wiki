@@ -18,7 +18,7 @@ the wiki fed and linted.
 - `wiki-context` - read-only lookup: relevant Topics/People/Projects/Sources for a query
 
 **Scheduled prompts** (`scheduled-prompts/`, see its README)
-- wiki-inbox-process, wiki-weekly-lint, newsletter-triage, transcript-triage, reading-list-triage (optional - needs a Reminders -> TASKS.md sync)
+- wiki-inbox-process, wiki-weekly-lint, newsletter-triage, transcript-triage, reading-list-triage (optional - reads `reading-list.md`; an Apple Reminders sync is one optional way to fill it)
 
 **Templates** (`templates/`)
 - `wiki-vault-CLAUDE.md` - the full schema that lives at your wiki vault root (the rulebook the verbs read)
@@ -43,7 +43,7 @@ Two vaults, two write scopes:
 - Obsidian vault access (all skills) - via Cowork folder access
 - Gmail (`newsletter-triage`)
 - Plaud + Monologue (`transcript-triage`)
-- Reminders / TASKS.md sync (`reading-list-triage`) - **optional**; the job only runs if you have a Reminders -> TASKS.md sync. Without it, skip registering reading-list-triage.
+- `reading-list.md` (`reading-list-triage`) - **optional**; the job reads a plain file at the wiki vault root. An Apple Reminders sync is one optional way to fill it. Without the file, skip registering reading-list-triage.
 - WebFetch / Chrome (URL ingest)
 
 ---
@@ -302,7 +302,7 @@ filed as analyses into your personal vault (never verbatim transcripts).
 | WebFetch / Chrome | `ingest-url`, `reading-list-triage` | Yes for URL ingest |
 | Gmail | `newsletter-triage` | Only for that job |
 | Plaud + Monologue | `transcript-triage` | Only for that job |
-| Reminders -> TASKS.md sync | `reading-list-triage` | Optional |
+| `reading-list.md` (Apple Reminders sync optional) | `reading-list-triage` | Optional |
 
 Skills whose connectors are missing simply do not run until connected.
 

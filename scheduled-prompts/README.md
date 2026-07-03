@@ -5,13 +5,18 @@ installed automatically - the `wiki-setup` skill offers to register them, or you
 create them yourself with the schedule tool. Each file's frontmatter has a `schedule:`
 cron expression and a `name`/`description`.
 
-| Job | Cadence | Needs | What it does |
-|---|---|---|---|
-| `wiki-inbox-process` | daily 03:30 | Obsidian vault | Triage `inbox/`, route to Sources/Topics, update Index. The single write-instance into the wiki. |
-| `transcript-triage` | daily 04:00 | Plaud + Monologue | Pull new voice recordings, classify, propose filing (no auto-write). |
-| `reading-list-triage` | daily 04:30 | TASKS.md (Reminders sync) - **optional** | Evaluate new Reading-List URLs -> Wiki / Skip. Skip this job if you have no Reminders -> TASKS.md sync. |
-| `newsletter-triage` | daily 05:50 | Gmail | Scan newsletters, recommend ingest / read / skip, drop captures into `inbox/`. |
-| `wiki-weekly-lint` | Saturday 11:00 | Obsidian vault | Health check: broken links, orphans, stale pages, contradictions -> `_audit/`. |
+Automation jobs come in three tiers. Enable only the tiers you want; wiki-setup asks.
+
+**Core (Obsidian only):**
+- `wiki-inbox-process` (daily 03:30) - triage `inbox/`, route to Sources/Topics, update Index. The single write-instance into the wiki.
+- `wiki-weekly-lint` (Saturday 11:00) - health check: broken links, orphans, stale pages, contradictions -> `_audit/`.
+
+**Neutral-optional (one cross-platform connector):**
+- `newsletter-triage` (daily 05:50, needs Gmail) - scan newsletters, recommend ingest / read / skip, drop captures into `inbox/`.
+
+**Mac-optional (Apple ecosystem):**
+- `transcript-triage` (daily 04:00, needs Plaud + Monologue) - pull new voice recordings, classify, propose filing (no auto-write).
+- `reading-list-triage` (daily 04:30, needs a capture source) - evaluate new Reading-List URLs -> Wiki / Skip. Skip this job if you have no Reminders -> TASKS.md sync.
 
 All three triage jobs are propose-only: they never file anything without your confirmation.
 They dedup via JSONL ledgers in `{{STATE_DIR}}` (the wiki vault is already the granted folder; the state dir is `{{STATE_DIR}}` inside it). The chain is:

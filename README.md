@@ -182,13 +182,18 @@ Every inbox file gets exactly one decision:
 These run on a schedule and are **propose-only**: they never file anything without your
 confirmation. They dedup via the JSONL ledgers in `{{STATE_DIR}}/`.
 
-| Job | Cadence | Needs | What it does |
-|---|---|---|---|
-| `wiki-inbox-process` | daily | Obsidian | Triage `inbox/`, route to Sources/Topics, update Index. The only job that writes durably into the wiki. |
-| `wiki-weekly-lint` | weekly | Obsidian | Health check, writes an audit report to `_audit/`. |
-| `newsletter-triage` | daily | Gmail | Scan newsletters, recommend ingest/read/skip, drop confirmed captures into `inbox/`. |
-| `transcript-triage` | daily | Plaud + Monologue | Pull new voice recordings, classify, propose filing. |
-| `reading-list-triage` | daily | TASKS.md (Reminders sync) - optional | Evaluate new Reading-List URLs, recommend Wiki or Skip. |
+Automation jobs come in three tiers. Enable only the tiers you want; wiki-setup asks.
+
+**Core (Obsidian only):**
+- `wiki-inbox-process` (daily) - triage inbox/, route to Sources/Topics, update Index.
+- `wiki-weekly-lint` (weekly) - health audit into _audit/.
+
+**Neutral-optional (one cross-platform connector):**
+- `newsletter-triage` (daily, needs Gmail) - scan newsletters, drop confirmed captures into inbox/.
+
+**Mac-optional (Apple ecosystem):**
+- `transcript-triage` (daily, needs Plaud + Monologue) - classify voice recordings, propose filing.
+- `reading-list-triage` (daily, needs a capture source) - evaluate new reading-list URLs.
 
 The chain for the triage jobs is always: **the job proposes -> you confirm -> a capture lands in
 `inbox/` -> `wiki-inbox-process` is the one thing that writes it durably into the wiki.**

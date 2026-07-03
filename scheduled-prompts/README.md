@@ -16,10 +16,10 @@ Automation jobs come in three tiers. Enable only the tiers you want; wiki-setup 
 
 **Mac-optional (Apple ecosystem):**
 - `transcript-triage` (daily 04:00, needs Plaud + Monologue) - pull new voice recordings, classify, propose filing (no auto-write).
-- `reading-list-triage` (daily 04:30, needs a capture source) - evaluate new Reading-List URLs -> Wiki / Skip. Skip this job if you have no Reminders -> TASKS.md sync.
+- `reading-list-triage` (daily 04:30, needs a capture source) - evaluate new Reading-List URLs -> Wiki / Skip. It reads `reading-list.md` at the wiki vault root; an Apple Reminders sync is one optional way to feed that file.
 
 All three triage jobs are propose-only: they never file anything without your confirmation.
-They dedup via JSONL ledgers in `{{STATE_DIR}}` (the wiki vault is already the granted folder; the state dir is `{{STATE_DIR}}` inside it). The chain is:
+They dedup via JSONL ledgers in `{{STATE_DIR}}` (inside the wiki vault, which is already granted). The chain is:
 newsletter/reading-list/transcript propose -> you confirm -> a capture lands in `inbox/`
 -> `wiki-inbox-process` is the only thing that writes durably into the wiki.
 
@@ -27,5 +27,5 @@ Write targets differ per job. `wiki-inbox-process` is the only job that writes i
 **wiki vault**. `transcript-triage` is the exception to "personal vault is read-only": once you
 confirm, it files meeting, 1-1, personal and brainstorm analyses into the **personal vault**
 (`{{PERSONAL_VAULT}}/Meetings`, `/Meetings/1-1`, `/Personal`, `/Ideas`), per
-`templates/routing-rules.md`. `reading-list-triage` is optional and only runs with a
-Reminders -> TASKS.md sync.
+`templates/routing-rules.md`. `reading-list-triage` is optional; it reads `reading-list.md`
+at the wiki vault root, which an Apple Reminders sync can optionally feed.
